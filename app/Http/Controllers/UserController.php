@@ -69,7 +69,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit', ['item' => User::find($id)]);
+        return view('user.edit', ['user' => User::find($id)]);
     }
 
     /**

@@ -38,9 +38,18 @@
 
                         Hanya produk terbaik untuk anda!
                         @else
-                        Mulai transaksi <a href="#">di sini</a>
-
-                        @endif
+                        Mulai transaksi <a href="{{ url('/transaksi/daftar_produk') }}">di sini</a>
+                        @if($keranjang!=null)
+                    <div class="card text-bg-warning mb-3 text-center" style="width:100%">
+                        <div class="card-body">
+                            <h2 class="card-title">Keranjang</h2>
+                            <p class="card-text">Selesaikan belanjamu</p>
+                            <a href="{{ url('/transaksi/keranjang') }}" class="btn btn-primary">
+                                Lihat keranjang</a>
+                        </div>
+                    </div>
+                    @endif
+                    @endif
                     </p>
                 </div>
             </div>

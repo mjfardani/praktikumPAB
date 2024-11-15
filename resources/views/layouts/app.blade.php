@@ -46,6 +46,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/alamat/show/0') }}">{{ __('Alamat') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/transaksi/daftar_produk') }}">
+                                {{ __('Produk') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/transaksi/keranjang') }}">
+                                {{ __('Keranjang') }}</a>
+                        </li>
                         @endif
                     </ul>
 
