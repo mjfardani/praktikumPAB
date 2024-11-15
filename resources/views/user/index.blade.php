@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($user as $user)
+            @forelse ($users as $user)
             <tr>
                 <td class="d-flex">
                     <a href="{{ url('/user/edit/'.$user->id) }}"
