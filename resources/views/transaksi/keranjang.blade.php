@@ -57,7 +57,8 @@
 
                             <button class="btn btn-primary" type="button"
                                 onclick="keranjang()">KERANJANG</button>&nbsp;
-                            <button class="btn btn-primary">CHECK OUT</button>&nbsp;
+                            <button class="btn btn-primary" onclick="checkout()">CHECK OUT</button>
+                            &nbsp;
                             <button class="btn btn-danger" type="button"
                                 onclick="batal()">BATAL</button>
                         </li>
@@ -106,6 +107,20 @@
             document.body.appendChild(form);
             form.submit();
         }
+    }
+
+    function checkout() {
+        const form = document.createElement('form');
+        form.method = 'post';
+        form.action = '{{ url("/transaksi/checkout") }}';
+        const tokenField = document.createElement('input');
+        tokenField.type = 'hidden';
+        tokenField.name = '_token';
+        tokenField.value = document
+            .querySelector('meta[name="csrf-token"]').getAttribute('content');
+        form.appendChild(tokenField);
+        document.body.appendChild(form);
+        form.submit();
     }
 </script>
 @endsection

@@ -109,3 +109,15 @@ Route::middleware(['auth', 'konsumen'])->post(
     '/transaksi/hapus_keranjang',
     [TransaksiController::class, 'hapus_keranjang']
 );
+Route::middleware(['auth', 'konsumen'])->post(
+    '/transaksi/checkout',
+    [TransaksiController::class, 'checkout']
+);
+Route::middleware(['auth', 'konsumen'])->post(
+    '/transaksi/simpan_ongkir',
+    [TransaksiController::class, 'simpan_ongkir']
+);
+Route::middleware(['auth', 'konsumen'])->get(
+    '/transaksi/bayar',
+    [TransaksiController::class, 'bayar']
+);
