@@ -34,10 +34,15 @@ class HomeController extends Controller
                 ->where('courier', '')
                 ->where('user_id', Auth::user()->id)
                 ->first();
+            $unpaid = Transaksi::where('status_transaksi', 'PESAN')
+                ->where('courier', '<>', '')
+                ->where('user_id', Auth::user()->id)
+                ->first();
             return view('home.konsumenindex', [
                 'alamat' => $alamat,
                 'last_produk' => $last_produk,
-                'keranjang' => $keranjang
+                'keranjang' => $keranjang,
+                'unpaid' => $unpaid
             ]);
         }
         return view('home');

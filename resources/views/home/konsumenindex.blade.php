@@ -19,7 +19,16 @@
         </div>
     </div>
     @endif
-
+    @if($unpaid!=null)
+    <div class="card text-bg-warning mb-3 text-center" style="width:100%">
+        <div class="card-body">
+            <h2 class="card-title">Belum terbayar</h2>
+            <p class="card-text">Selesaikan belanjamu</p>
+            <a href="{{ url('/transaksi/bayar') }}" class="btn btn-primary">
+                Lihat transaksi</a>
+        </div>
+    </div>
+    @endif
     <div id="tokokuCarousel" class="carousel slide carousel-fade" data-bs-ride="false">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#tokokuCarousel" data-bs-slide-to="0"

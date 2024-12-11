@@ -155,12 +155,7 @@
         var courier = document.getElementsByName("courier")[0].value;
         var weight = document.getElementsByName("weight")[0].value;
         const url = '{{ url("/api/get_ongkir") }}';
-        const params = 'destination=' + {
-                {
-                    $destination
-                }
-            } +
-            '&weight=' + weight + '&courier=' + courier;
+        const params = 'destination=' + '{{ $destination }}' + '&weight=' + weight + '&courier=' + courier;
         const xhr = new XMLHttpRequest();
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

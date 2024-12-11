@@ -55,4 +55,47 @@ class Libs
             return ['code' => '500', 'text' => $err_message];
         }
     }
+    public static function status_midtrans($order_id)
+    {
+        $err_message = '';
+        $cred = base64_encode(env('MIDTRANS_SERVER_KEY') . ':');
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_HTTPHEADER => array(
+                "Accept: application/json",
+                "Content-Type: application/json",
+                "Authorization: Basic " . $cred
+            ),
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => 'https://api.sandbox.midtrans.com/v2/'
+                . $order_id . '/status',
+            CURLOPT_POST => 0,
+        ));
+        $resp = curl_exec($curl);
+        if (curl_errno($curl)) {
+            $err_message = 'Error: "' . curl_error($curl) .
+                '" - Code:' . curl_errno($curl);
+        }
+        curl_close($curl);
+        if ($err_message == '') {
+            $services = [];
+            $json = json_decode($resp, TRUE);
+            if (
+                $json['status_code'] == '407' || $json['status_code'] == '201'
+                || $json['status_code'] == '200'
+            ) {
+                return [
+                    'code' => '200',
+                    'message' => $json['transaction_status']
+                ];
+            } else {
+                return [
+                    'code' => '400',
+                    'message' => $json['status_message']
+                ];
+            }
+        } else {
+            return ['code' => '500', 'message' => $err_message];
+        }
+    }
 }

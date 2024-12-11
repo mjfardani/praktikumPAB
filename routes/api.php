@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\TransaksiController;
+use App\Http\Controllers\Api\PaymentCallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('city', [CityController::class, 'index']);
 
 Route::post('get_ongkir', [TransaksiController::class, 'get_ongkir']);
+Route::post(
+    'payments/midtrans-notification',
+    [PaymentCallbackController::class, 'receive']
+);
